@@ -1,0 +1,161 @@
+import React from 'react';
+import { View, StyleSheet, Platform } from 'react-native';
+import { RTCView } from 'react-native-connectycube';
+import CallingLoader from './CallingLoader';
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+
+
+export default ({ streams }) => {
+    const RTCViewRendered = ({ userId, stream, isNotRemote }) => {
+        if (stream) {
+            { console.warn('stream', Platform.OS, isNotRemote) }
+            return (
+                isNotRemote ?
+                    <RTCView
+                        zOrder={1}
+                        objectFit="cover"
+                        style={styles.blackView}
+                        key={userId}
+                        streamURL={stream.toURL()}
+                    />
+                    :
+                    <RTCView
+                        objectFit="cover"
+                        style={styles.blackView}
+                        key={userId}
+                        streamURL={stream.toURL()}
+                    />
+
+            );
+        }
+        return (
+            <View style={styles.blackView}>
+                <CallingLoader name={"OtherUser"} />
+            </View>
+        );
+    };
+
+    const streamsCount = streams.length;
+
+    let RTCListView = null;
+
+    switch (streamsCount) {
+        case 1:
+            RTCListView = (
+                <RTCViewRendered
+                    userId={streams[0].userId}
+                    stream={streams[0].stream}
+                />
+            );
+            break;
+        case 2:
+            RTCListView = (
+                <View
+                    style={{
+                        flex: 1,
+                    }} >
+
+                    <RTCViewRendered
+                        userId={streams[0].userId}
+                        stream={streams[0].stream}
+                    />
+                    <View style={{
+                        backgroundColor: 'black',
+                        position: "absolute",
+                        left: "70%",
+                        top: "5%",
+                        width: "25%",
+                        height: "20%",
+                        overflow: 'hidden',
+                        zIndex: 2
+                    }}>
+                        <RTCViewRendered
+                            userId={streams[1].userId}
+                            stream={streams[1].stream}
+                            isNotRemote={true}
+                        />
+                    </View>
+
+
+                </View>
+            );
+            break;
+        case 3:
+            RTCListView = (
+                <View style={styles.inColumn}>
+                    <View style={styles.inRow}>
+                        <RTCViewRendered
+                            userId={streams[0].userId}
+                            stream={streams[0].stream}
+                        />
+                        <RTCViewRendered
+                            userId={streams[1].userId}
+                            stream={streams[1].stream}
+                        />
+                    </View>
+                    <RTCViewRendered
+                        userId={streams[2].userId}
+                        stream={streams[2].stream}
+                    />
+                </View>
+            );
+            break;
+
+        case 4:
+            RTCListView = (
+                <View style={styles.inColumn}>
+                    <View style={styles.inRow}>
+                        <RTCViewRendered
+                            userId={streams[0].userId}
+                            stream={streams[0].stream}
+                        />
+                        <RTCViewRendered
+                            userId={streams[1].userId}
+                            stream={streams[1].stream}
+                        />
+                    </View>
+                    <View style={styles.inRow}>
+                        <RTCViewRendered
+                            userId={streams[2].userId}
+                            stream={streams[2].stream}
+                        />
+                        <RTCViewRendered
+                            userId={streams[3].userId}
+                            stream={streams[3].stream}
+                        />
+                    </View>
+                </View>
+            );
+            break;
+
+        default:
+            break;
+    }
+
+    return <View style={styles.blackView}>{RTCListView}</View>;
+};
+
+const styles = StyleSheet.create({
+    blackView: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
+    userVideo: {
+        backgroundColor: 'black',
+        position: "absolute",
+        left: "70%",
+        top: "5%",
+        width: "25%",
+        height: "20%",
+        overflow: 'hidden',
+        zIndex: 2
+    },
+    inColumn: {
+        flex: 1,
+        flexDirection: 'column',
+    },
+    inRow: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+});

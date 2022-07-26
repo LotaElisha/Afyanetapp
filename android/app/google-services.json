@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "450742348040",
+    "firebase_url": "https://afyanet-4b75a.firebaseio.com",
+    "project_id": "afyanet-4b75a",
+    "storage_bucket": "afyanet-4b75a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450742348040:android:11420d27bf80a20624a4bd",
+        "android_client_info": {
+          "package_name": "com.afyanet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450742348040-7rqpffj4nnksqrhcmnl19dir53o6b0tg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.afyanet",
+            "certificate_hash": "8311632543fb67e5166ca31d935ebab47cbe80a8"
+          }
+        },
+        {
+          "client_id": "450742348040-lnhj7kbs47pks9iipuvn1u81ep69gmr0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.afyanet",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "450742348040-cskjfr56m4cded5opr0d6u73ldanb1s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr8bDgqdlYvJKCOyW9gbPiHol2wOkFx7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450742348040-cskjfr56m4cded5opr0d6u73ldanb1s0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "450742348040-grjdk0n12h5re2eo89ei045c4elpb4gj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.Afyanet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

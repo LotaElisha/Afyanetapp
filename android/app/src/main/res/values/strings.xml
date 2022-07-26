@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Afyanet</string>
+    <string name="facebook_app_id">274793387950328</string>
+    <string name="fb_login_protocol_scheme">fb274793387950328</string>
+</resources>
