@@ -22,6 +22,7 @@ import { CommonActions } from '@react-navigation/native';
 import { twitterService } from "../../../../components/buttons/twitterSigninButton";
 import { facebookService } from "../../../../components/buttons/facebookLoginButton";
 import { googleService } from "../../../../components/buttons/googleSignInButton";
+import { appleServices } from "../../../../components/buttons/appleLoginButton";
 import BaseClass from "../../../../utils/BaseClass";
 import COLORS from "../../../../themes/Colors";
 import { AUTH_IMAGES } from "../../../../utils/ImagePaths";
@@ -506,10 +507,20 @@ class LoginScreen extends BaseClass {
                     <View style={{
                         height: 43,
                         width: 43,
+                        marginHorizontal:5,
                         borderRadius: 21.5,
                         backgroundColor: COLORS.WHITE_COLOR,
                         justifyContent: 'center',
                         alignItems: 'center',
+                        shadowColor: "#000",
+                        shadowOffset: {
+                        	width: 0,
+                        	height: 2,
+                        },
+                        shadowOpacity: 0.23,
+                        shadowRadius: 2.62,
+
+                        elevation: 4,
                     }}>
                         <AntDesign
                             name={"apple1"}
@@ -525,7 +536,7 @@ class LoginScreen extends BaseClass {
     async onAppleButtonPress() {
         const { deviceToken } = this.state
         // performs login request
-        {
+       try {
             appleAuth.isSupported &&
             appleAuth
                 .performRequest({
@@ -552,8 +563,11 @@ class LoginScreen extends BaseClass {
                     } else {
                         this.showToastAlert(STRINGS.NO_INTERNET_CONNECTION)
                     }
-                    //props.sendResponse(appleAuthRequestResponse)        
+                    //props.sendResponse(appleAuthRequestResponse)
                 });
+        }
+        catch(err){
+        console.log(err)
         }
 
         // get current authentication state for user
@@ -669,6 +683,7 @@ class LoginScreen extends BaseClass {
                 {this._renderGoogleButton()}
                 {this._renderFacebookButton()}
                 {this._renderTwitterButton()}
+                {this._renderAppleButton()}
                 {Platform.OS == 'ios' &&
                     this._renderAppleButton()
                 }
