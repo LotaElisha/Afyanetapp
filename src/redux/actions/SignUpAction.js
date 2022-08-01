@@ -7,20 +7,20 @@ export const RegisterApi = (payload, registerResponse) => {
     debugger
     let data = new FormData();
     data.append("user_type", payload.registerPayload.user_type);
-    data.append("first_name", payload.registerPayload.first_name);
-    data.append("last_name", payload.registerPayload.last_name);
+//    data.append("first_name", payload.registerPayload.first_name);
+//    data.append("last_name", payload.registerPayload.last_name);
     data.append("email", payload.registerPayload.email);
-    data.append("phone_number", Number(payload.registerPayload.phone_number));
-    data.append("alternate_number", Number(payload.registerPayload.alternate_number));
+//    data.append("phone_number", Number(payload.registerPayload.phone_number));
+//    data.append("alternate_number", Number(payload.registerPayload.alternate_number));
     data.append("password", payload.registerPayload.password);
     data.append("c_password", payload.registerPayload.c_password);
-    if (payload.registerPayload.national_id === undefined && payload.registerPayload.national_id === null)
-        data.append("national_id", payload.registerPayload.national_id);
-    data.append("house_number", payload.registerPayload.house_number);
-    data.append("street_name", payload.registerPayload.street_name);
-    data.append("ward_name", payload.registerPayload.ward_name);
-    data.append("district", payload.registerPayload.district);
-    data.append("region", payload.registerPayload.region);
+//    if (payload.registerPayload.national_id === undefined && payload.registerPayload.national_id === null)
+//        data.append("national_id", payload.registerPayload.national_id);
+//    data.append("house_number", payload.registerPayload.house_number);
+//    data.append("street_name", payload.registerPayload.street_name);
+//    data.append("ward_name", payload.registerPayload.ward_name);
+//    data.append("district", payload.registerPayload.district);
+//    data.append("region", payload.registerPayload.region);
     data.append("provider_id", payload.registerPayload.provider_id);
     data.append("provider_name", payload.registerPayload.provider_name);
     data.append("is_social_account", payload.registerPayload.is_social_account);
