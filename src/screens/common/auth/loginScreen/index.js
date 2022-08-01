@@ -683,7 +683,6 @@ class LoginScreen extends BaseClass {
                 {this._renderGoogleButton()}
                 {this._renderFacebookButton()}
                 {this._renderTwitterButton()}
-                {this._renderAppleButton()}
                 {Platform.OS == 'ios' &&
                     this._renderAppleButton()
                 }
