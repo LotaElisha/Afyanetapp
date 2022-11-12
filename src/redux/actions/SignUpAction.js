@@ -102,7 +102,7 @@ export const RegisterPatientDetailsApi = (
   data.append("surgery_complication", payload.surgery_complication);
 
   axios
-    .post(BASE_URL + API.REGISTER_PATIENT_DETAILS_API, data, {
+    .post(BASE_URL + API.REGISTER_PATIENT_DETAILS_API, data, {789214215
       headers: {},
     })
     .then((response) => {
