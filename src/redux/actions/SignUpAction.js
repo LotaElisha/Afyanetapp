@@ -90,7 +90,6 @@ export const RegisterPatientDetailsApi = (
     data.append("emergency_contact1", e1);
     data.append("emergency_contact2", e2.length < 12 ? "" : e2);
   }
-
   data.append("age", payload.age);
   data.append("blood_group", payload.blood_group);
   data.append("gender", payload.gender);
@@ -102,11 +101,11 @@ export const RegisterPatientDetailsApi = (
   data.append("surgery_complication", payload.surgery_complication);
 
   axios
-    .post(BASE_URL + API.REGISTER_PATIENT_DETAILS_API, data, {789214215
+    .post(BASE_URL + API.REGISTER_PATIENT_DETAILS_API, data, {
       headers: {},
     })
     .then((response) => {
-      registerPatientDetailsResponse(response.data);
+      registerPatientDetailsResponse(response);
     })
     .catch((error) => {
       registerPatientDetailsResponse(error);
@@ -194,7 +193,7 @@ export const RegisterDoctorDetailsApi = (
     })
     .then((response) => {
       console.warn("success", response.data);
-      registerDoctorDetailsResponse(response.data);
+      registerDoctorDetailsResponse(response);
     })
     .catch((error) => {
       console.warn("error", error);
