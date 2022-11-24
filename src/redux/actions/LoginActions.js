@@ -14,7 +14,7 @@ export const SimpleLoginAction = (payload) => {
     data.append("apns_id", DEVICE_TYPE == 'IOS' ? payload.deviceToken : null);
 
     return function (dispatch) {
-        axios.post("https://afyanetwork.com/api/login", data, {
+        axios.post("https://dev.afyanetwork.com/api/v2/login", data, {
             headers: {
                 "Content-Type": "application/json",
             }

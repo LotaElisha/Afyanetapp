@@ -16,7 +16,6 @@ import { LoginManager } from "react-native-fbsdk";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-community/async-storage";
 import { CommonActions } from "@react-navigation/native";
-
 import { twitterService } from "../../../../components/buttons/twitterSigninButton";
 import { facebookService } from "../../../../components/buttons/facebookLoginButton";
 import { googleService } from "../../../../components/buttons/googleSignInButton";
