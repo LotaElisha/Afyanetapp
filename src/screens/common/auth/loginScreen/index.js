@@ -69,6 +69,7 @@ import appleAuth, {
   AppleButton,
 } from "@invertase/react-native-apple-authentication";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import * as RootNavigation from "../../../../utils/rootNavigation";
 
 const { RNTwitterSignIn } = NativeModules;
 
@@ -118,13 +119,9 @@ class LoginScreen extends BaseClass {
               loginResponse.data.user_data.user_type.toLowerCase() ===
                 "caretaker"
             ) {
-              navigate("PatientDetailsScreen", {
-                data: loginResponse.data.user_data,
-              });
+              RootNavigation.navigate("PatientDrawer");
             } else {
-              navigate("MedicalDetails", {
-                data: loginResponse.data.user_data,
-              });
+              RootNavigation.navigate("DoctorDrawer");
             }
           } else if (
             loginResponse.data.payment_status === undefined ||
