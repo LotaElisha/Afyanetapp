@@ -42,6 +42,7 @@ import OrientationLoadingOverlay from "../../../../../utils/CustomLoader";
 import { CommonActions } from "@react-navigation/native";
 import { ConnectycubeAuthServices } from "../../../../../utils/services";
 import ConnectyCube from "react-native-connectycube";
+import * as RootNavigation from "../../../../../utils/rootNavigation";
 
 export default class VerifyOtpScreen extends BaseClass {
   constructor(props) {
@@ -133,35 +134,9 @@ export default class VerifyOtpScreen extends BaseClass {
         this.showToastSucess(STRINGS.OTP_VERIFIED_SUCCESSFULLY);
         if (userType === "patient" || userType === "caretaker") {
           console.log("pass");
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 1,
-              routes: [
-                {
-                  name: "LoginScreen",
-                },
-                {
-                  name: "PatientDetailsScreen",
-                  params: { data: data },
-                },
-              ],
-            })
-          );
+          RootNavigation.navigate("PatientDrawer");
         } else if (userType === "doctor") {
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 1,
-              routes: [
-                {
-                  name: "LoginScreen",
-                },
-                {
-                  name: "MedicalDetails",
-                  params: { data: data },
-                },
-              ],
-            })
-          );
+          RootNavigation.navigate("DoctorDrawer");
         }
       } else if (response.code === 204) {
         this.showToastAlert(response.message);
