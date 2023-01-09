@@ -119,15 +119,26 @@ class LoginScreen extends BaseClass {
               loginResponse.data.user_data.user_type.toLowerCase() ===
                 "caretaker"
             ) {
+              AsyncStorage.setItem(
+                STRINGS.LOGIN_DATA,
+                JSON.stringify(loginResponse.data)
+              );
               RootNavigation.navigate("PatientDrawer");
             } else {
+              AsyncStorage.setItem(
+                STRINGS.LOGIN_DATA,
+                JSON.stringify(loginResponse.data)
+              );
               RootNavigation.navigate("DoctorDrawer");
             }
           } else if (
             loginResponse.data.payment_status === undefined ||
             loginResponse.data.payment_status === null
           ) {
-            // AsyncStorage.setItem(STRINGS.LOGIN_DATA, JSON.stringify(loginResponse.data));
+            AsyncStorage.setItem(
+              STRINGS.LOGIN_DATA,
+              JSON.stringify(loginResponse.data)
+            );
             navigate("PaymentScreen", {
               paymentSender: loginResponse.data.user_data.id,
               paymentReceiver: 10,
@@ -146,6 +157,7 @@ class LoginScreen extends BaseClass {
               loginResponse.data.payment_status.payment_status === "COMPLETED"
             ) {
               this.showToastSucess(STRINGS.LOGIN_SUCCESSFUL);
+              console.log("Reached here", loginResponse);
               AsyncStorage.setItem(
                 STRINGS.LOGIN_DATA,
                 JSON.stringify(loginResponse.data)
