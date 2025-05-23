@@ -32,9 +32,6 @@ import ConsultationRequest from '../screens/doctorModule/consultationRequest';
 import ConsultationScreen from '../screens/doctorModule/consultationScreen';
 import DoctorDetail from '../screens/doctorModule/doctorDetails';
 //patient history
-// import History from "../screens/patientModule/consultationHistory/doctorHistory";
-// import LabHistory from "../screens/patientModule/consultationHistory/labHistory";
-// import PharmacyHistory from "../screens/patientModule/consultationHistory/pharmacyHistory";
 import DoctorHistory from "../screens/doctorModule/doctorHistory";
 import DoctorHomeScreen from "../screens/doctorModule/doctorHome";
 import DoctorPaymentScreen from "../screens/doctorModule/doctorPaymentScreen";
