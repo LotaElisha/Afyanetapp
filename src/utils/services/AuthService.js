@@ -62,17 +62,30 @@ export default class AuthService {
     login = (user, deviceToken) => {
         return new Promise((resolve, reject) => {
             ConnectyCube.createSession(user)
-                .then(() => {
+                .then((session) => {
                         // this.subcribeToPushNotification(deviceToken)
                         ConnectyCube.chat.connect({
                             userId: user.id,
                             password: user.password,
                         })
-                            .then(resolve)
+                            .then(() => resolve(session.token))
                             .catch(reject);
                     }
                 )
-                .then(resolve)
+                .catch(reject);
+        });
+    };
+
+    loginWithToken = (token, userId) => {
+        return new Promise((resolve, reject) => {
+            ConnectyCube.createSession({ token })
+                .then(() => {
+                    ConnectyCube.chat.connect({
+                        userId: userId,
+                    })
+                        .then(resolve)
+                        .catch(reject);
+                })
                 .catch(reject);
         });
     };

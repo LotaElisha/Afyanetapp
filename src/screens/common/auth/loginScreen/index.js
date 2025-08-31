@@ -120,48 +120,41 @@ class LoginScreen extends BaseClass {
                     else {
                         if (loginResponse.data.payment_status.payment_status === 'COMPLETED') {
                             this.showToastSucess(STRINGS.LOGIN_SUCCESSFUL);
-                            AsyncStorage.setItem(STRINGS.LOGIN_DATA, JSON.stringify(loginResponse.data));
                             let user = {
                                 id: loginResponse.data.connect_cube_details.connect_cube_id,
                                 email: loginResponse.data.user_data.email,
                                 password: "Mind@123",
-                            }
+                            };
 
-                            const _onSuccessLogin = (resolved) => {
+                            const _onSuccessLogin = (token) => {
+                                loginResponse.data.connectycube_token = token;
+                                AsyncStorage.setItem(STRINGS.LOGIN_DATA, JSON.stringify(loginResponse.data));
+
+                                if (loginResponse.data.user_data.user_type.toLowerCase() === "patient" || loginResponse.data.user_data.user_type.toLowerCase() === "caretaker") {
+                                    navigation.dispatch(
+                                        CommonActions.reset({
+                                            index: 0,
+                                            routes: [{ name: 'PatientDrawer' }],
+                                        })
+                                    );
+                                } else {
+                                    navigation.dispatch(
+                                        CommonActions.reset({
+                                            index: 0,
+                                            routes: [{ name: 'DoctorDrawer' }],
+                                        })
+                                    );
+                                }
                             };
 
                             const _onErrorLogin = (error) => {
-                            }
+                                console.warn("ConnectyCube login failed:", error);
+                                this.showToastAlert("Failed to connect to chat service.");
+                            };
 
                             ConnectycubeAuthServices.login(user, deviceToken)
                                 .then(_onSuccessLogin)
-                                .catch(_onErrorLogin)
-
-
-                            if (loginResponse.data.user_data.user_type.toLowerCase() === "patient" || loginResponse.data.user_data.user_type.toLowerCase() === "caretaker") {
-
-                                navigation.dispatch(
-                                    CommonActions.reset({
-                                        index: 0,
-                                        routes: [
-                                            {
-                                                name: 'PatientDrawer'
-                                            },
-                                        ],
-                                    })
-                                )
-                            } else {
-                                navigation.dispatch(
-                                    CommonActions.reset({
-                                        index: 0,
-                                        routes: [
-                                            {
-                                                name: 'DoctorDrawer'
-                                            },
-                                        ],
-                                    })
-                                )
-                            }
+                                .catch(_onErrorLogin);
                         }
                         else {
                             navigate("PaymentScreen", {
@@ -240,49 +233,42 @@ class LoginScreen extends BaseClass {
                     }
                     else {
                         this.showToastSucess(STRINGS.LOGIN_SUCCESSFUL);
-                        AsyncStorage.setItem(STRINGS.LOGIN_DATA, JSON.stringify(socialResponse.data));
 
                         let user = {
                             id: socialResponse.data.connect_cube_details.connect_cube_id,
                             email: socialResponse.data.user_data.email,
                             password: "Mind@123",
-                        }
+                        };
 
-                        const _onSuccessLogin = (success) => {
+                        const _onSuccessLogin = (token) => {
+                            socialResponse.data.connectycube_token = token;
+                            AsyncStorage.setItem(STRINGS.LOGIN_DATA, JSON.stringify(socialResponse.data));
 
+                            if (socialResponse.data.user_data.user_type.toLowerCase() === "patient" || socialResponse.data.user_data.user_type.toLowerCase() === "caretaker") {
+                                navigation.dispatch(
+                                    CommonActions.reset({
+                                        index: 0,
+                                        routes: [{ name: 'PatientDrawer' }],
+                                    })
+                                );
+                            } else {
+                                navigation.dispatch(
+                                    CommonActions.reset({
+                                        index: 0,
+                                        routes: [{ name: 'DoctorDrawer' }],
+                                    })
+                                );
+                            }
                         };
 
                         const _onErrorLogin = (error) => {
-
-                        }
+                            console.warn("ConnectyCube login failed:", error);
+                            this.showToastAlert("Failed to connect to chat service.");
+                        };
 
                         ConnectycubeAuthServices.login(user, deviceToken)
                             .then(_onSuccessLogin)
-                            .catch(_onErrorLogin)
-
-                        if (socialResponse.data.user_data.user_type.toLowerCase() === "patient" || socialResponse.data.user_data.user_type.toLowerCase() === "caretaker") {
-                            navigation.dispatch(
-                                CommonActions.reset({
-                                    index: 0,
-                                    routes: [
-                                        {
-                                            name: 'PatientDrawer'
-                                        },
-                                    ],
-                                })
-                            )
-                        } else {
-                            navigation.dispatch(
-                                CommonActions.reset({
-                                    index: 0,
-                                    routes: [
-                                        {
-                                            name: 'DoctorDrawer'
-                                        },
-                                    ],
-                                })
-                            )
-                        }
+                            .catch(_onErrorLogin);
                     }
                 } else if (socialResponse.code === 204) {
                     this.hideDialog();

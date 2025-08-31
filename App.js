@@ -151,12 +151,9 @@ export default class App extends Component {
                 ConnectyCube.chat.disconnect();
                 await AsyncStorage.getItem(STRINGS.LOGIN_DATA).then((result) => {
                     let userData = JSON.parse(result);
-                    if (userData !== undefined && userData !== null) {
-                        let user = {
-                            id: userData.connect_cube_details.connect_cube_id,
-                            email: userData.user_data.email,
-                            password: "Mind@123",
-                        };
+                    if (userData && userData.connectycube_token && userData.connect_cube_details) {
+                        const token = userData.connectycube_token;
+                        const userId = userData.connect_cube_details.connect_cube_id;
                         const _onSuccessLogin = (success) => {
                             console.warn("called method1", success)
                             this.notificationNavigator(userData, notification)
@@ -165,7 +162,7 @@ export default class App extends Component {
                             console.warn("called method2", error)
                             this.notificationNavigator(userData, notification)
                         };
-                        ConnectycubeAuthServices.login(user, "")
+                        ConnectycubeAuthServices.loginWithToken(token, userId)
                             .then(_onSuccessLogin)
                             .catch(_onErrorLogin);
                     }
@@ -213,12 +210,9 @@ export default class App extends Component {
                         ConnectyCube.chat.disconnect();
                         await AsyncStorage.getItem(STRINGS.LOGIN_DATA).then((result) => {
                             let userData = JSON.parse(result);
-                            if (userData !== undefined && userData !== null) {
-                                let user = {
-                                    id: userData.connect_cube_details.connect_cube_id,
-                                    email: userData.user_data.email,
-                                    password: "Mind@123",
-                                }
+                            if (userData && userData.connectycube_token && userData.connect_cube_details) {
+                                const token = userData.connectycube_token;
+                                const userId = userData.connect_cube_details.connect_cube_id;
                                 const _onSuccessLogin = (success) => {
                                     const { data } = notification;
                                     RootNavigation.navigate('VideoScreen',
@@ -240,7 +234,7 @@ export default class App extends Component {
                                         })
                                 }
 
-                                ConnectycubeAuthServices.login(user, "")
+                                ConnectycubeAuthServices.loginWithToken(token, userId)
                                     .then(_onSuccessLogin)
                                     .catch(_onErrorLogin)
                             }

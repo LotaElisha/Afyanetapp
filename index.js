@@ -12,26 +12,23 @@ import AsyncStorage from '@react-native-community/async-storage';
 import STRINGS from './src/utils/Strings'
 
 messaging().setBackgroundMessageHandler(async remoteMessage => {
- // console.warn("yryryryryyryr", remoteMessage)
+  // console.warn("yryryryryyryr", remoteMessage)
   ConnectycubeAuthServices.init();
   ConnectyCube.chat.disconnect();
   await AsyncStorage.getItem(STRINGS.LOGIN_DATA).then((result) => {
     let userData = JSON.parse(result);
-    if (userData !== undefined && userData !== null) {
-      let user = {
-        id: userData.connect_cube_details.connect_cube_id,
-        email: userData.user_data.email,
-        password: "Mind@123",
-      }
+    if (userData && userData.connectycube_token && userData.connect_cube_details) {
+      const token = userData.connectycube_token;
+      const userId = userData.connect_cube_details.connect_cube_id;
 
       const _onSuccessLogin = (success) => {
       };
 
       const _onErrorLogin = (error) => {
-
+        console.warn("Background ConnectyCube login failed:", error);
       }
 
-      ConnectycubeAuthServices.login(user, "")
+      ConnectycubeAuthServices.loginWithToken(token, userId)
         .then(_onSuccessLogin)
         .catch(_onErrorLogin)
     }

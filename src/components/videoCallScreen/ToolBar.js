@@ -33,29 +33,6 @@ export default class ToolBar extends BaseClass {
             senderId,
             recieverId
         } = this.props;
-        //connect
-        await AsyncStorage.getItem(STRINGS.LOGIN_DATA).then((result) => {
-            let userData = JSON.parse(result);
-            if (userData !== undefined && userData !== null) {
-                let user = {
-                    id: userData.connect_cube_details.connect_cube_id,
-                    email: userData.user_data.email,
-                    password: "Mind@123",
-                };
-                ConnectyCube.createSession(user)
-                .then(() => {
-                        ConnectyCube.chat.connect({
-                            userId: user.id,
-                            password: user.password,
-                        })
-                    }
-                ).catch(error => {
-                    console.warn(error)
-                })
-     
-            }
-        });       
-
         //video call notification API
         if (this.isConnected()) {
             NotificationApi({
