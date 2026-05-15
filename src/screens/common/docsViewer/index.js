@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import BaseClass from "../../../utils/BaseClass";
 import { WebView } from 'react-native-webview';
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import STRINGS from "../../../utils/Strings";
 import { CommonActions } from '@react-navigation/native';
 import { MainContainer, SafeAreaViewContainer, ScrollContainer, ShadowViewContainer } from "../../../utils/BaseStyles";

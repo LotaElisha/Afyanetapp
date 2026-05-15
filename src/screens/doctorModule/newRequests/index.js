@@ -10,7 +10,7 @@ import {
   Switch,
   TouchableWithoutFeedback,
 } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 
 import {

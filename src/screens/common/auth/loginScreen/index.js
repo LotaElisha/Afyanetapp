@@ -13,10 +13,10 @@ import { Input } from "react-native-elements";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import {
     GoogleSignin,
-} from '@react-native-community/google-signin';
-import { LoginManager } from 'react-native-fbsdk';
+} from '@react-native-google-signin/google-signin';
+import { LoginManager } from 'react-native-fbsdk-next';
 import { connect } from "react-redux";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CommonActions } from '@react-navigation/native';
 
 import { twitterService } from "../../../../components/buttons/twitterSigninButton";

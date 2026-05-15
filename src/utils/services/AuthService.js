@@ -1,7 +1,7 @@
 import ConnectyCube from 'react-native-connectycube';
 import {credentials} from "../config";
 import {Platform} from "react-native";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class AuthService {
 

@@ -16,7 +16,7 @@ import * as _ from "lodash";
 import { SpecializationsData } from "../../utils/CommonStaticData";
 import { NewPrimaryButton } from "../buttons/primaryButton";
 import { connect } from "react-redux";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GetAllDoctorListAction } from "../../redux/actions/GetAllDoctorAction";
 import { ChangeConsultationRequestStatusApi } from "../../redux/actions/DoctorConsultationActions";
 import { Dropdown } from '../../../local_modules/react-native-material-dropdown';

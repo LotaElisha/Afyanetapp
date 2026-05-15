@@ -28,7 +28,7 @@ import {
 } from "react-native";
 import { GetTestPrescriptionApi, GetMedicalPrescriptionApi } from "../../../redux/actions/PrescriptionAction";
 import { TestOrderApi } from "../../../redux/actions/PlaceOrderAction";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as _ from "lodash";
 import NoDataFoundComponent from "../../../components/noDataFoundComponent";
 

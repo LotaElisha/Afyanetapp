@@ -17,7 +17,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { connect } from "react-redux";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import BaseClass from "../../../utils/BaseClass";
 import COLORS from "../../../themes/Colors";
 import { AUTH_IMAGES } from "../../../utils/ImagePaths";

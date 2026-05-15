@@ -1,4 +1,4 @@
-import {GoogleSignin, statusCodes} from "@react-native-community/google-signin";
+import {GoogleSignin, statusCodes} from "@react-native-google-signin/google-signin";
 import {TouchableOpacity, Image} from "react-native";
 import React from "react";
 import {AUTH_IMAGES} from "../../../utils/ImagePaths";

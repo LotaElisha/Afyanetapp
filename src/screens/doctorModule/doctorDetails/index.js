@@ -48,7 +48,7 @@ import { Header } from "react-native-elements";
 import { NewPrimaryButton } from "../../../components/buttons/primaryButton";
 import WavyHeader from '../component/waveView'
 import { RatingView } from "../../../components/ratingComponent";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DoctorDetailsApi } from "../../../redux/actions/DoctorDetailsAction";
 import OrientationLoadingOverlay from "../../../utils/CustomLoader";
 import ActiveIcon from "react-native-vector-icons/Octicons";

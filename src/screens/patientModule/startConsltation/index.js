@@ -10,7 +10,7 @@ import {
     TouchableWithoutFeedback,
     Keyboard, KeyboardAvoidingView
 } from 'react-native'
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { Header } from "react-native-elements";
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -115,7 +115,7 @@ class StartConsultation extends BaseClass {
         });
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         debugger
         const { navigation } = this.props;
         const { startConsltationRespose } = nextProps.startConsltationState;

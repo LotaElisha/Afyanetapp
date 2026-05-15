@@ -13,7 +13,7 @@ import { ListIcon, ListItemContainer, NameText } from "../commonStyles";
 import { AttendantNameText, CenterContainer } from "./styles";
 import { connect } from "react-redux";
 import { GetLabsAction } from "../../../redux/actions/GetLabsAction";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import {
@@ -75,7 +75,7 @@ class Laboratories extends BaseClass {
         this._unsubscribe();
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         const { navigation } = this.props;
         const { getLabsResponse } = nextProps.GetLabsState;
         if (getLabsResponse !== undefined && getLabsResponse !== null) {

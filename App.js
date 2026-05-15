@@ -9,7 +9,7 @@ import { StatusBar, Platform, PermissionsAndroid, DeviceEventEmitter } from "rea
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import { ConnectycubeAuthServices } from "./src/utils/services";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ConnectyCube from "react-native-connectycube";
 import * as RootNavigation from "./src/utils/rootNavigation"
 import { navigationRef } from "./src/utils/rootNavigation";

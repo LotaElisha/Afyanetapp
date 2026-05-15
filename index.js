@@ -8,7 +8,7 @@ import { name as appName } from './app.json';
 import messaging from '@react-native-firebase/messaging';
 import { ConnectycubeAuthServices } from './src/utils/services';
 import ConnectyCube from 'react-native-connectycube';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import STRINGS from './src/utils/Strings'
 
 messaging().setBackgroundMessageHandler(async remoteMessage => {
