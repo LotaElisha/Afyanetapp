@@ -18,7 +18,7 @@ import {
     DateTimeText
 } from "./styles";
 import { connect } from "react-redux";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
@@ -121,7 +121,7 @@ class LabHistory extends BaseClass {
         }
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
 
     }
     _renderCustomLoader = () => {

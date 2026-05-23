@@ -13,7 +13,7 @@ import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import RadioForm from 'react-native-simple-radio-button';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CommonActions } from '@react-navigation/native';
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
     TextInputHeading

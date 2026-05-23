@@ -107,7 +107,7 @@ class ForgotPassword extends BaseClass {
     };
 
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         const {navigation} = this.props;
         const {forgotResponse} = nextProps.forgotPasswordState;
         if (forgotResponse !== undefined && forgotResponse !== null) {

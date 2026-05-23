@@ -30,7 +30,7 @@ import { NewPrimaryButton } from "../../../components/buttons/primaryButton";
 import { FONT_FAMILY } from "../../../themes/FontFamilies";
 import STRINGS from "../../../utils/Strings";
 import { FONT } from "../../../themes/FontSizes";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import OrientationLoadingOverlay from "../../../utils/CustomLoader";
 import {
     ChangeConsultationRequestStatusApi,

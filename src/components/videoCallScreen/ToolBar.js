@@ -6,7 +6,7 @@ import BaseClass from "../../utils/BaseClass";
 import ConnectyCube from "react-native-connectycube";
 import { NotificationApi } from '../../redux/actions/NotificationAction'
 import STRINGS from "../../utils/Strings";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default class ToolBar extends BaseClass {

@@ -38,7 +38,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { DOCTOR_MODULE_IMAGES, PATIENT_HOME_SCREEN_IMAGES, DRAWER_ICONS } from "../../../utils/ImagePaths";
 import { ListItemContainer, ListIcon, NameText } from "../commonStyles";
 import { SpecializationAction } from "../../../redux/actions/SpecializedDocAction";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
     NoRecordsFoundContainer,
     NoRecordsFoundText
@@ -93,7 +93,7 @@ class SpecializedDoctors extends BaseClass {
         });
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         const { navigation } = this.props;
         const { specializedDocResponse } = nextProps.GetSpecializedDocState;
         if (specializedDocResponse !== undefined && specializedDocResponse !== null) {

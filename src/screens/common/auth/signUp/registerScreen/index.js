@@ -32,7 +32,7 @@ import AutoCompleteComponent from "../../../../../components/googlePlacesAutoCom
 import { CheckUserExistApi } from "../../../../../redux/actions/CheckUserExistAction";
 import { SendOtpApi } from "../../../../../redux/actions/OtpAction";
 import OrientationLoadingOverlay from "../../../../../utils/CustomLoader";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import messaging from '@react-native-firebase/messaging';
 
 export default class RegisterScreen extends BaseClass {

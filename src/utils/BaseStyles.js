@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { ScrollView } from "react-native";
-import SafeAreaView from 'react-native-safe-area-view'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import COLORS from "../themes/Colors";
 
 const MainContainer = styled.View`
@@ -34,7 +34,7 @@ const BorderViewContainer = styled.View`
 `;
 
 const SafeAreaViewContainer = styled(SafeAreaView).attrs(() => ({
-    forceInset: { top: 'always' }
+    edges: ['top']
 }))`
 flex:1;
 backgroundColor: ${COLORS.WHITE_COLOR};

@@ -16,7 +16,7 @@ import {
 } from "./styles";
 import { connect } from "react-redux";
 import { GetPharmacyAction } from "../../../redux/actions/GetPharmacyAction";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
@@ -146,7 +146,7 @@ class PharmacyListing extends BaseClass {
     }
 
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
         const { navigation } = this.props;
         const { getPharmacyResponse } = nextProps.GetPharmacyState;
         if (getPharmacyResponse !== undefined && getPharmacyResponse !== null) {

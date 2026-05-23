@@ -1,5 +1,5 @@
 import React from 'react'
-import {AccessToken, GraphRequest, GraphRequestManager, LoginManager} from 'react-native-fbsdk'
+import {AccessToken, GraphRequest, GraphRequestManager, LoginManager} from 'react-native-fbsdk-next'
 import {TouchableOpacity,Image} from "react-native";
 import {AUTH_IMAGES} from "../../../utils/ImagePaths";
 

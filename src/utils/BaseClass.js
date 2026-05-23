@@ -19,7 +19,7 @@ import NetInfo from '@react-native-community/netinfo';
 // LOCAL & CONFIG IMPORTS
 // ----------------------------------------
 import COLORS from '../themes/Colors';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import STRINGS from './Strings';
 
 // variables.....

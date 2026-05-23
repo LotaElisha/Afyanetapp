@@ -28,7 +28,7 @@ import {
 } from "./styles";
 import { connect } from "react-redux";
 import { GetPaymentHistoryApi } from "../../../redux/actions/PaymentHistoryAction";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
@@ -108,7 +108,7 @@ class PaymentHistory extends BaseClass {
       this.showToastAlert(STRINGS.UNKNOWN_ERROR);
     }
   };
-  componentWillReceiveProps(nextProps, nextContext) { }
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) { }
 
   _renderCustomLoader = () => {
     const { isLoading } = this.state;

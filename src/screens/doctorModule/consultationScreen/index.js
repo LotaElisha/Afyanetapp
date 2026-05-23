@@ -71,7 +71,7 @@ import { ChatImageBackground } from "../../common/auth/authComponents";
 import { AbsoluteContainer } from "../../common/auth/authComponents/styles";
 import { TextAreaContainer } from "../../common/auth/signUp/medicalDetails/styles";
 import NoDataFoundComponent from "../../../components/noDataFoundComponent";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import ConnectyCube, { data } from "react-native-connectycube";
 import { getValueById } from "../../../utils/Helper";
 import { BloodGroupOptionsData } from "../../../utils/CommonStaticData";
@@ -137,7 +137,7 @@ export default class ConsultationScreen extends BaseClass {
     }
 
     //fun keyboard stuff- we use these to get the end of the ScrollView to "follow" the top of the InputBar as the keyboard rises and falls
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
         this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
     }
@@ -307,7 +307,7 @@ export default class ConsultationScreen extends BaseClass {
         }
 
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
 
     }
 

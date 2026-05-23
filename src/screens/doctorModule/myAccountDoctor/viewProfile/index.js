@@ -30,7 +30,7 @@ import PhoneInput from "../../../..//../local_modules/react-native-phone-input";
 import AutoCompleteComponent from "../../../../components/googlePlacesAutoComplete";
 import { GetProfileApi, UpdateProfileApi } from "../../../..//redux/actions/GetUpdateProfileAction";
 import OrientationLoadingOverlay from "../../../../utils/CustomLoader";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
     ProfileImage,
 } from "../styles";

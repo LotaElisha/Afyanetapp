@@ -45,7 +45,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Header, SearchBar } from "react-native-elements";
 import { NewPrimaryButton } from "../../../components/buttons/primaryButton";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GetTestListApi, TestSubmitApi } from "../../../redux/actions/PrescriptionAction";
 import OrientationLoadingOverlay from "../../../utils/CustomLoader";
 import DropDownPicker from "react-native-dropdown-picker";

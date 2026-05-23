@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { Image, View } from "react-native";
 import * as DeviceInfo from "react-native-device-info";
-import Animated from 'react-native-reanimated';
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import CancelRequestModal from "../components/cancelRequestModal";
 import VideoScreen from "../components/videoCallScreen";
@@ -31,10 +30,6 @@ import ConsultationHistoryDetails from '../screens/doctorModule/consultationHist
 import ConsultationRequest from '../screens/doctorModule/consultationRequest';
 import ConsultationScreen from '../screens/doctorModule/consultationScreen';
 import DoctorDetail from '../screens/doctorModule/doctorDetails';
-//patient history
-// import History from "../screens/patientModule/consultationHistory/doctorHistory";
-// import LabHistory from "../screens/patientModule/consultationHistory/labHistory";
-// import PharmacyHistory from "../screens/patientModule/consultationHistory/pharmacyHistory";
 import DoctorHistory from "../screens/doctorModule/doctorHistory";
 import DoctorHomeScreen from "../screens/doctorModule/doctorHome";
 import DoctorPaymentScreen from "../screens/doctorModule/doctorPaymentScreen";
@@ -66,57 +61,42 @@ import COLORS from "../themes/Colors";
 import { PATIENT_TAB_ICONS } from "../utils/ImagePaths";
 
 
-
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
 
-//==============================================================================//
-//============================PATIENT'S NAVIGATORS==============================//
-//==============================================================================//
 const PatientDrawerNavigator = () => {
-    const [progress, setProgress] = React.useState(new Animated.Value(0));
-    const scale = Animated.interpolate(progress, {
-        inputRange: [0, 1],
-        outputRange: [1, 0.8]
-    });
-    const borderRadius = Animated.interpolate(progress, {
-        inputRange: [0, 1],
-        outputRange: [0, 40]
-    });
-    const screenStyle = { borderRadius, transform: [{ scale }] };
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.TRANSPARENT }}>
             <Drawer.Navigator
-                drawerType={'slide'}
-                overlayColor={COLORS.TRANSPARENT}
-                drawerStyle={{
-                    width: wp(62),
-                    backgroundColor: COLORS.APP_THEME_COLOR
+                initialRouteName="Screens"
+                screenOptions={{
+                    headerShown: false,
+                    drawerType: 'slide',
+                    overlayColor: COLORS.TRANSPARENT,
+                    drawerStyle: {
+                        width: wp(62),
+                        backgroundColor: COLORS.APP_THEME_COLOR,
+                    },
+                    sceneContainerStyle: { backgroundColor: COLORS.APP_THEME_COLOR },
                 }}
-                drawerContentOption={{
-                    activeBackgroundColor: COLORS.TRANSPARENT,
-                }}
-                sceneContainerStyle={{ backgroundColor: COLORS.APP_THEME_COLOR }}
-                drawerContent={props => {
-                    setProgress(props.progress);
-                    return <PatientCustomDrawerContent {...props} />
-                }}
-                initialRouteName="Screens">
-                <Drawer.Screen name="Screens">
-                    {props => <PatientDrawerScreens {...props} style={screenStyle} />}
-                </Drawer.Screen>
+                drawerContent={props => <PatientCustomDrawerContent {...props} />}
+            >
+                <Drawer.Screen name="Screens" component={PatientDrawerScreens} />
             </Drawer.Navigator>
         </View>
     )
 };
 
-const PatientDrawerScreens = ({ style }) => {
+const PatientDrawerScreens = () => {
     return (
-        <Animated.View style={[{ flex: 1, overflow: 'hidden' }, style]}>
-            <Stack.Navigator initialRouteName="PatientTab" headerMode="none">
+        <View style={{ flex: 1, overflow: 'hidden' }}>
+            <Stack.Navigator
+                initialRouteName="PatientTab"
+                screenOptions={{ headerShown: false }}
+            >
                 <Stack.Screen name="PatientTab" component={TabNavigator} />
                 <Stack.Screen name="PatientsListing" component={PatientsListing} />
                 <Stack.Screen name="MyAccountPatient" component={MyAccountPatient} />
@@ -126,161 +106,84 @@ const PatientDrawerScreens = ({ style }) => {
                 <Stack.Screen name="Notification" component={Notification} />
                 <Stack.Screen name="EditAndAddPatient" component={EditAndAddPatient} />
             </Stack.Navigator>
-        </Animated.View>
+        </View>
     )
 };
 
 
-const TabNavigator = ({ }) => {
+const tabBarIconBg = (icon) => (
+    <View style={{
+        height: wp("13%"),
+        width: wp("13%"),
+        borderRadius: wp("4%"),
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: COLORS.APP_THEME_COLOR,
+    }}>
+        <Image source={icon} />
+    </View>
+);
+
+const TabNavigator = () => {
     return (
         <Tab.Navigator
             initialRouteName={"PatientHomeScreen"}
             backBehavior={"initialRoute"}
-            tabBarOptions={{
-                showLabel: false,
-                tabStyle: {
-                    height: wp("15%"),
-                },
-                style: {
+            screenOptions={{
+                headerShown: false,
+                tabBarShowLabel: false,
+                tabBarStyle: {
                     height: DeviceInfo.hasNotch() ? wp("19%") : wp("15%"),
                     backgroundColor: COLORS.WHITE_COLOR_SHADE,
-                }
+                },
+                tabBarItemStyle: {
+                    height: wp("15%"),
+                },
             }}
         >
             <Tab.Screen
                 name="SpecializedDoctors"
                 component={SplDoctor}
-                options={navigation => ({
-                    unmountOnBlur: true,
-                    tabBarIcon: ({ color, focused }) => {
-                        if (focused) {
-                            return (
-                                <View style={{
-                                    height: wp("13%"),
-                                    width: wp("13%"),
-                                    borderRadius: wp("4%"),
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    backgroundColor: COLORS.APP_THEME_COLOR
-                                }}>
-                                    <Image source={PATIENT_TAB_ICONS.ACTIVE_GENERAL_DOCTOR_ICON} />
-                                </View>
-                            )
-                        } else {
-                            return (
-                                <Image source={PATIENT_TAB_ICONS.INACTIVE_GENERAL_DOCTOR_ICON} />
-                            )
-                        }
-                    }
-                })
-                }
+                options={{
+                    tabBarIcon: ({ focused }) => focused
+                        ? tabBarIconBg(PATIENT_TAB_ICONS.ACTIVE_GENERAL_DOCTOR_ICON)
+                        : <Image source={PATIENT_TAB_ICONS.INACTIVE_GENERAL_DOCTOR_ICON} />,
+                }}
             />
             <Tab.Screen
                 name="GeneralDoctors"
                 component={GeneralDoctorsListing}
                 options={{
-                    tabBarIcon: ({ color, focused }) => {
-                        if (focused) {
-                            return (
-                                <View style={{
-                                    height: wp("13%"),
-                                    width: wp("13%"),
-                                    borderRadius: wp("4%"),
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    backgroundColor: COLORS.APP_THEME_COLOR
-                                }}>
-                                    <Image source={PATIENT_TAB_ICONS.ACTIVE_SPECIALIZED_DOCTOR_ICON} />
-                                </View>
-                            )
-                        } else {
-                            return (
-                                <Image source={PATIENT_TAB_ICONS.INACTIVE_SPECIALIZED_DOCTOR_ICON} />
-                            )
-                        }
-                    }
+                    tabBarIcon: ({ focused }) => focused
+                        ? tabBarIconBg(PATIENT_TAB_ICONS.ACTIVE_SPECIALIZED_DOCTOR_ICON)
+                        : <Image source={PATIENT_TAB_ICONS.INACTIVE_SPECIALIZED_DOCTOR_ICON} />,
                 }}
             />
-
             <Tab.Screen
                 name="PatientHomeScreen"
                 component={PatientHomeScreen}
-                options={navigation => ({
-                    unmountOnBlur: true,
-                    tabBarIcon: ({ color, focused }) => {
-                        if (focused) {
-                            return (
-                                <View style={{
-                                    height: wp("13%"),
-                                    width: wp("13%"),
-                                    borderRadius: wp("4%"),
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    backgroundColor: COLORS.APP_THEME_COLOR
-                                }}>
-                                    <Image source={PATIENT_TAB_ICONS.ACTIVE_HOME_ICON} />
-                                </View>
-                            )
-                        } else {
-                            return (
-                                <Image source={PATIENT_TAB_ICONS.INACTIVE_HOME_ICON} />
-                            )
-                        }
-                    }
-                })
-                }
+                options={{
+                    tabBarIcon: ({ focused }) => focused
+                        ? tabBarIconBg(PATIENT_TAB_ICONS.ACTIVE_HOME_ICON)
+                        : <Image source={PATIENT_TAB_ICONS.INACTIVE_HOME_ICON} />,
+                }}
             />
-
             <Tab.Screen
                 name="Labs"
                 component={Laboratories}
                 options={{
-                    tabBarIcon: ({ color, focused }) => {
-                        if (focused) {
-                            return (
-                                <View style={{
-                                    height: wp("13%"),
-                                    width: wp("13%"),
-                                    borderRadius: wp("4%"),
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    backgroundColor: COLORS.APP_THEME_COLOR
-                                }}>
-                                    <Image source={PATIENT_TAB_ICONS.ACTIVE_LAB_TEST_ICON} />
-                                </View>
-                            )
-                        } else {
-                            return (
-                                <Image source={PATIENT_TAB_ICONS.INACTIVE_LAB_TEST_ICON} />
-                            )
-                        }
-                    }
+                    tabBarIcon: ({ focused }) => focused
+                        ? tabBarIconBg(PATIENT_TAB_ICONS.ACTIVE_LAB_TEST_ICON)
+                        : <Image source={PATIENT_TAB_ICONS.INACTIVE_LAB_TEST_ICON} />,
                 }}
             />
             <Tab.Screen
                 name="Pharmacy"
                 component={PharmacyListing}
                 options={{
-                    tabBarIcon: ({ color, focused }) => {
-                        if (focused) {
-                            return (
-                                <View style={{
-                                    height: wp("13%"),
-                                    width: wp("13%"),
-                                    borderRadius: wp("4%"),
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    backgroundColor: COLORS.APP_THEME_COLOR
-                                }}>
-                                    <Image source={PATIENT_TAB_ICONS.ACTIVE_PHARMACY_ICON} />
-                                </View>
-                            )
-                        } else {
-                            return (
-                                <Image source={PATIENT_TAB_ICONS.INACTIVE_PHARMACY_ICON} />
-                            )
-                        }
-                    }
+                    tabBarIcon: ({ focused }) => focused
+                        ? tabBarIconBg(PATIENT_TAB_ICONS.ACTIVE_PHARMACY_ICON)
+                        : <Image source={PATIENT_TAB_ICONS.INACTIVE_PHARMACY_ICON} />,
                 }}
             />
         </Tab.Navigator>
@@ -288,51 +191,36 @@ const TabNavigator = ({ }) => {
 };
 
 
-
-//==============================================================================//
-//=============================DOCTOR'S NAVIGATORS==============================//
-//==============================================================================//
 const DoctorDrawerNavigator = () => {
-    const [progress, setProgress] = React.useState(new Animated.Value(0));
-    const scale = Animated.interpolate(progress, {
-        inputRange: [0, 1],
-        outputRange: [1, 0.8]
-    });
-    const borderRadius = Animated.interpolate(progress, {
-        inputRange: [0, 1],
-        outputRange: [0, 40]
-    });
-    const screenStyle = { borderRadius, transform: [{ scale }] };
     return (
         <View style={{ flex: 1, backgroundColor: COLORS.TRANSPARENT }}>
             <Drawer.Navigator
-                drawerType={'slide'}
-                overlayColor={COLORS.TRANSPARENT}
-                drawerStyle={{
-                    width: wp(62),
-                    backgroundColor: COLORS.APP_THEME_COLOR
+                initialRouteName="Screens"
+                screenOptions={{
+                    headerShown: false,
+                    drawerType: 'slide',
+                    overlayColor: COLORS.TRANSPARENT,
+                    drawerStyle: {
+                        width: wp(62),
+                        backgroundColor: COLORS.APP_THEME_COLOR,
+                    },
+                    sceneContainerStyle: { backgroundColor: COLORS.APP_THEME_COLOR },
                 }}
-                drawerContentOption={{
-                    activeBackgroundColor: COLORS.TRANSPARENT,
-                }}
-                sceneContainerStyle={{ backgroundColor: COLORS.APP_THEME_COLOR }}
-                drawerContent={props => {
-                    setProgress(props.progress);
-                    return <DoctorsCustomDrawerContent {...props} />
-                }}
-                initialRouteName="Home">
-                <Drawer.Screen name="Screens">
-                    {props => <DoctorDrawerScreens {...props} style={screenStyle} />}
-                </Drawer.Screen>
+                drawerContent={props => <DoctorsCustomDrawerContent {...props} />}
+            >
+                <Drawer.Screen name="Screens" component={DoctorDrawerScreens} />
             </Drawer.Navigator>
         </View>
     )
 };
 
-const DoctorDrawerScreens = ({ style }) => {
+const DoctorDrawerScreens = () => {
     return (
-        <Animated.View style={[{ flex: 1, overflow: 'hidden' }, style]}>
-            <Stack.Navigator initialRouteName="DoctorHomeScreen" headerMode="none">
+        <View style={{ flex: 1, overflow: 'hidden' }}>
+            <Stack.Navigator
+                initialRouteName="DoctorHomeScreen"
+                screenOptions={{ headerShown: false }}
+            >
                 <Stack.Screen name="DoctorHomeScreen" component={DoctorHomeScreen} />
                 <Stack.Screen name="NewRequest" component={NewRequestScreen} />
                 <Stack.Screen name="MyAccountDoctor" component={MyAccountDoctor} />
@@ -344,17 +232,17 @@ const DoctorDrawerScreens = ({ style }) => {
                 <Stack.Screen name="ActiveConsultation" component={ActiveConsultation} />
                 <Stack.Screen name="Notification" component={Notification} />
             </Stack.Navigator>
-        </Animated.View>
+        </View>
     )
 };
 
 
-//==============================================================================//
-//===============================MAIN NAVIGATOR=================================//
-//==============================================================================//
 const Navigator = () => {
     return (
-        <Stack.Navigator initialRouteName="GettingStarted" mode="modal" headerMode="none">
+        <Stack.Navigator
+            initialRouteName="GettingStarted"
+            screenOptions={{ headerShown: false, presentation: 'modal' }}
+        >
             <Stack.Screen name="GettingStarted" component={GettingStarted} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />

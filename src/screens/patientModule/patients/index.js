@@ -31,7 +31,7 @@ import {
   ShadowViewContainer,
 } from "../../../utils/BaseStyles";
 import { NewPrimaryButton } from "../../../components/buttons/primaryButton";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   GetPatientApi,
   RemovePatientApi,

@@ -30,7 +30,7 @@ import { AbsoluteContainer, CardContainerStyle } from "../../authComponents/styl
 import { SpecializationsData } from "../../../../../utils/CommonStaticData";
 import { RegisterDoctorDetailsApi } from "../../../../../redux/actions/SignUpAction";
 import OrientationLoadingOverlay from "../../../../../utils/CustomLoader";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import * as _ from "lodash";
 import { ConnectycubeAuthServices } from "../../../../../utils/services";

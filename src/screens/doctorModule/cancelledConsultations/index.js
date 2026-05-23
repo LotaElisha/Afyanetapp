@@ -24,7 +24,7 @@ import {
   DateTimeText,
 } from "./styles";
 import { connect } from "react-redux";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { widthPercentageToDP as wp } from "react-native-responsive-screen";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
@@ -105,7 +105,7 @@ class CanceledConsultation extends BaseClass {
     }
   };
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     // const {getLabsResponse} = nextProps.GetLabsState;
     // if (getLabsResponse !== undefined && getLabsResponse !== null) {
     //     if (getLabsResponse.code === 200 && getLabsResponse.status === 'success') {

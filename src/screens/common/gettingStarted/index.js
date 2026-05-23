@@ -22,7 +22,7 @@ import { Spacer } from "../../../components/spacer";
 import STRINGS from "../../../utils/Strings";
 import COLORS from "../../../themes/Colors";
 import { GETTING_STARTED_IMAGES } from "../../../utils/ImagePaths";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CommonActions } from "@react-navigation/native";
 import messaging from "@react-native-firebase/messaging";
 import * as RootNavigation from "../../../utils/rootNavigation";
