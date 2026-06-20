@@ -1,6 +1,9 @@
 package com.afyanet;
 
 import com.facebook.react.ReactActivity;
+import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
+import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +14,16 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "Afyanet";
+  }
+
+  /**
+   * Returns the instance of the {@link ReactActivityDelegate}. We use {@link
+   * DefaultReactActivityDelegate} which allows you to enable New Architecture with a single boolean
+   * flag {@code fabricEnabled}.
+   */
+  @Override
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    return new DefaultReactActivityDelegate(
+        this, getMainComponentName(), DefaultNewArchitectureEntryPoint.getFabricEnabled());
   }
 }
